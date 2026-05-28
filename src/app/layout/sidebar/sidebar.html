@@ -1,0 +1,228 @@
+<aside class="
+    w-64
+    h-screen
+    bg-white
+    border-r
+    border-gray-200
+    flex
+    flex-col
+    shadow-sm
+  ">
+
+  <!-- Header -->
+
+  <div class="
+      h-16
+      flex
+      items-center
+      px-5
+      border-b
+      border-gray-100
+    ">
+
+    <!-- Logo -->
+
+    <div class="
+        w-9
+        h-9
+        rounded-xl
+        bg-primario
+        flex
+        items-center
+        justify-center
+        text-white
+        font-bold
+        text-sm
+        shadow-sm
+      ">
+      <img src="logo-funsemint.png" alt="Funsemint">
+    </div>
+
+    <!-- Información -->
+
+    <div class="ml-3">
+
+      <h1 class="
+          text-sm
+          font-semibold
+          text-texto
+          leading-none
+        ">
+        Funsemint
+      </h1>
+
+      <p class="
+          text-xs
+          text-gray-400
+          mt-1
+        ">
+        Control Horario
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- Navegación -->
+
+  <nav class="
+      flex-1
+      px-3
+      py-4
+      space-y-1
+    ">
+
+    <!-- Item activo -->
+
+    <a routerLink="/dashboard" routerLinkActive="bg-verdeSuave text-primario" class="
+    flex
+    items-center
+    gap-3
+    rounded-xl
+    px-4
+    py-3
+    text-sm
+    font-medium
+    text-gray-600
+    transition-all
+    hover:bg-gray-100
+  ">
+
+      Dashboard
+
+    </a>
+    <!-- Item -->
+
+    <a routerLink="/jornadas" routerLinkActive="bg-verdeSuave text-primario" class="
+    flex
+    items-center
+    gap-3
+    rounded-xl
+    px-4
+    py-3
+    text-sm
+    font-medium
+    text-gray-600
+    transition-all
+    hover:bg-gray-100
+  ">
+
+      Jornadas
+
+    </a>
+
+    <!-- Mostrar 'Empleados' solo para admin/supervisor -->
+    <ng-container *hasRole="['admin','supervisor']">
+      <a routerLink="/empleados" routerLinkActive="bg-verdeSuave text-primario" class="
+      flex
+      items-center
+      gap-3
+      rounded-xl
+      px-4
+      py-3
+      text-sm
+      font-medium
+      text-gray-600
+      transition-all
+      hover:bg-gray-100
+    ">
+
+        Empleados
+
+      </a>
+    </ng-container>
+
+    <ng-container *hasRole="['admin']">
+      <a routerLink="/admin/usuarios" routerLinkActive="bg-verdeSuave text-primario" class="
+      flex
+      items-center
+      gap-3
+      rounded-xl
+      px-4
+      py-3
+      text-sm
+      font-medium
+      text-gray-600
+      transition-all
+      hover:bg-gray-100
+    ">
+
+        Administración de usuarios
+
+      </a>
+    </ng-container>
+
+    <ng-container *hasRole="['admin','supervisor']">
+      <a routerLink="/monitoreo" routerLinkActive="bg-verdeSuave text-primario" class="
+      flex
+      items-center
+      gap-3
+      rounded-xl
+      px-4
+      py-3
+      text-sm
+      font-medium
+      text-gray-600
+      transition-all
+      hover:bg-gray-100
+    ">
+
+        Monitoreo
+
+      </a>
+    </ng-container>
+
+  </nav>
+
+  <!-- Footer -->
+
+  <div class="
+      p-4
+      border-t
+      border-gray-100
+    ">
+
+    <div class="
+        rounded-2xl
+        bg-gray-50
+        p-4
+      ">
+
+      <p class="
+          text-xs
+          text-gray-400
+          uppercase
+          tracking-wide
+        ">
+        Estado
+      </p>
+
+      <div class="
+          mt-2
+          flex
+          items-center
+          gap-2
+        ">
+
+        <div class="
+            w-2
+            h-2
+            rounded-full
+            bg-green-500
+          "></div>
+
+        <span class="
+            text-sm
+            font-medium
+            text-texto
+          ">
+          Sistema operativo
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</aside>

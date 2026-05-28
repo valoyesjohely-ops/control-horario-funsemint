@@ -1,0 +1,153 @@
+<div
+  class="
+    space-y-6
+  "
+>
+
+  <!-- Encabezado -->
+
+  <section
+    class="
+      flex
+      flex-col
+      gap-4
+      lg:flex-row
+      lg:items-center
+      lg:justify-between
+    "
+  >
+
+    <!-- Información -->
+
+    <div>
+
+      <h1
+        class="
+          text-3xl
+          font-bold
+          tracking-tight
+          text-texto
+        "
+      >
+        Listado de empleados
+      </h1>
+
+    </div>
+
+    <!-- Botón -->
+
+    <button
+      class="
+        rounded-2xl
+        bg-primario
+        px-5
+        py-3
+        text-sm
+        font-medium
+        text-white
+        shadow-suave
+        transition-all
+        hover:bg-secundario
+      "
+    >
+      + Nuevo empleado
+    </button>
+
+  </section>
+
+  <!-- Buscador -->
+
+  <section>
+
+    <div
+      class="
+        rounded-premium
+        border
+        border-gray-100
+        bg-white
+        p-5
+        shadow-suave
+      "
+    >
+
+      <input
+        type="text"
+
+        placeholder="Buscar empleado..."
+
+        class="
+          w-full
+          rounded-xl
+          border
+          border-gray-200
+          px-4
+          py-3
+          outline-none
+          transition-all
+          focus:border-primario
+        "
+      />
+
+    </div>
+
+  </section>
+
+  <!-- Tabla -->
+
+  <section>
+
+    <app-tabla-empleados>
+    </app-tabla-empleados>
+
+  </section>
+
+  <!-- Estadísticas -->
+
+  <section
+    class="
+      grid
+      gap-6
+      md:grid-cols-2
+      xl:grid-cols-4
+    "
+  >
+
+    <app-card-estadistica
+      titulo="Total empleados"
+      valor="48"
+      descripcion="Registrados en el sistema"
+      tendencia="+6%"
+      [positiva]="true"
+    >
+    </app-card-estadistica>
+
+    <app-card-estadistica
+      titulo="Activos"
+      valor="24"
+      descripcion="Actualmente trabajando"
+      tendencia="+12%"
+      [positiva]="true"
+    >
+    </app-card-estadistica>
+
+    <app-card-estadistica
+      titulo="En pausa"
+      valor="6"
+      descripcion="Descanso activo"
+      tendencia="+2%"
+      [positiva]="true"
+    >
+    </app-card-estadistica>
+
+    <app-card-estadistica
+      titulo="Inactivos"
+      valor="4"
+      descripcion="Sin actividad"
+      tendencia="-3%"
+      [positiva]="false"
+    >
+    </app-card-estadistica>
+
+  </section>
+
+</div>

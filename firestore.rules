@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isUserOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidRole(role) {
+      return role in ['admin', 'supervisor', 'empleado'];
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+
+      allow create: if isAuthenticated()
+        && request.auth.uid == userId
+        && request.resource.data.role == 'empleado'
+        && isValidRole(request.resource.data.role);
+
+      allow update: if isAuthenticated() && (
+        // El usuario puede actualizar su propio perfil sin cambiar rol
+        (request.auth.uid == userId
+          && request.resource.data.role == resource.data.role
+          && request.resource.data.keys().hasAll(['correo', 'role', 'createdAt']) == false)
+        || isAdmin()
+      )
+      && isValidRole(request.resource.data.role);
+
+      allow delete: if isAdmin();
+
+      match /documents/{documentId} {
+        allow read, write: if isAuthenticated() && (
+          request.auth.uid == userId
+          || isAdmin()
+        );
+      }
+    }
+
+    match /audit_logs/{logId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

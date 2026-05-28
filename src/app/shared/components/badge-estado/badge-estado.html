@@ -1,0 +1,50 @@
+<div
+  class="
+    inline-flex
+    items-center
+    gap-2
+    rounded-full
+    px-3
+    py-1.5
+    text-xs
+    font-semibold
+  "
+
+  [ngClass]="{
+
+    'bg-green-100 text-green-700': estado === 'Activo',
+
+    'bg-yellow-100 text-yellow-700': estado === 'Pausa',
+
+    'bg-red-100 text-red-700': estado === 'Inactivo',
+
+    'bg-gray-100 text-gray-700': estado === 'Desconectado'
+
+  }"
+>
+
+  <!-- Indicador -->
+
+  <div
+    class="
+      h-2
+      w-2
+      rounded-full
+    "
+
+    [ngClass]="{
+
+      'bg-green-500': estado === 'Activo',
+
+      'bg-yellow-500': estado === 'Pausa',
+
+      'bg-red-500': estado === 'Inactivo',
+
+      'bg-gray-500': estado === 'Desconectado'
+
+    }"
+  ></div>
+
+  {{ estado }}
+
+</div>

@@ -1,0 +1,560 @@
+<div class="space-y-6">
+
+  <!-- Encabezado -->
+
+  <section>
+
+    <h1
+      class="
+        text-3xl
+        font-bold
+        tracking-tight
+        text-texto
+      "
+    >
+      Mi jornada
+    </h1>
+
+
+  </section>
+
+  <!-- Card principal -->
+
+  <section>
+
+    <div
+      class="
+        rounded-premium
+        border
+        border-gray-100
+        bg-white
+        p-8
+        shadow-suave
+      "
+    >
+
+      <div
+        class="
+          flex
+          flex-col
+          gap-8
+          xl:flex-row
+          xl:items-center
+          xl:justify-between
+        "
+      >
+
+        <!-- Información -->
+
+        <div>
+
+          <!-- Badge -->
+
+          <div
+            class="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-green-100
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-green-700
+            "
+          >
+
+            <div
+              class="
+                h-2
+                w-2
+                rounded-full
+                bg-green-500
+              "
+            ></div>
+
+            {{ estadoJornada }}
+
+          </div>
+
+          <!-- Tiempo -->
+
+          <h2
+            class="
+              mt-6
+              text-5xl
+              font-bold
+              tracking-tight
+              text-texto
+            "
+          >
+            {{ tiempoTrabajado }}
+          </h2>
+
+          <p
+            class="
+              mt-3
+              text-gray-500
+            "
+          >
+            Tiempo trabajado hoy
+          </p>
+
+          <!-- Información extra -->
+
+          <div
+            class="
+              mt-8
+              flex
+              flex-wrap
+              gap-6
+            "
+          >
+
+            <div>
+
+              <p
+                class="
+                  text-sm
+                  text-gray-400
+                "
+              >
+                Hora inicio
+              </p>
+
+              <p
+                class="
+                  mt-1
+                  font-semibold
+                  text-texto
+                "
+              >
+                {{ horaInicio }}
+              </p>
+
+            </div>
+
+            <div>
+
+              <p
+                class="
+                  text-sm
+                  text-gray-400
+                "
+              >
+                Confianza operativa
+              </p>
+
+              <p
+                class="
+                  mt-1
+                  font-semibold
+                  text-green-600
+                "
+              >
+                Alta
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Acciones -->
+
+        <div
+          class="
+            flex
+            flex-col
+            gap-4
+            w-full
+            xl:w-auto
+          "
+        >
+
+          <button
+            class="
+              rounded-2xl
+              bg-secundario
+              px-6
+              py-4
+              text-sm
+              font-semibold
+              text-white
+              shadow-suave
+              transition-all
+              hover:opacity-90
+            "
+          >
+            Iniciar pausa
+          </button>
+
+          <button
+            class="
+              rounded-2xl
+              bg-alerta
+              px-6
+              py-4
+              text-sm
+              font-semibold
+              text-white
+              shadow-suave
+              transition-all
+              hover:opacity-90
+            "
+          >
+            Finalizar jornada
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Validaciones -->
+
+  <section>
+
+    <div
+      class="
+        grid
+        gap-6
+        md:grid-cols-2
+        xl:grid-cols-4
+      "
+    >
+
+      <!-- GPS -->
+
+      <div
+        class="
+          rounded-premium
+          border
+          border-gray-100
+          bg-white
+          p-5
+          shadow-suave
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            text-gray-400
+          "
+        >
+          GPS
+        </p>
+
+        <div
+          class="
+            mt-4
+            flex
+            items-center
+            gap-3
+          "
+        >
+
+          <div
+            class="
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <p
+            class="
+              font-semibold
+              text-texto
+            "
+          >
+            Ubicación validada
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Heartbeat -->
+
+      <div
+        class="
+          rounded-premium
+          border
+          border-gray-100
+          bg-white
+          p-5
+          shadow-suave
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            text-gray-400
+          "
+        >
+          Heartbeat
+        </p>
+
+        <div
+          class="
+            mt-4
+            flex
+            items-center
+            gap-3
+          "
+        >
+
+          <div
+            class="
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <p
+            class="
+              font-semibold
+              text-texto
+            "
+          >
+            Sistema activo
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Actividad -->
+
+      <div
+        class="
+          rounded-premium
+          border
+          border-gray-100
+          bg-white
+          p-5
+          shadow-suave
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            text-gray-400
+          "
+        >
+          Actividad
+        </p>
+
+        <div
+          class="
+            mt-4
+            flex
+            items-center
+            gap-3
+          "
+        >
+
+          <div
+            class="
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <p
+            class="
+              font-semibold
+              text-texto
+            "
+          >
+            Actividad detectada
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Red -->
+
+      <div
+        class="
+          rounded-premium
+          border
+          border-gray-100
+          bg-white
+          p-5
+          shadow-suave
+        "
+      >
+
+        <p
+          class="
+            text-sm
+            text-gray-400
+          "
+        >
+          Red
+        </p>
+
+        <div
+          class="
+            mt-4
+            flex
+            items-center
+            gap-3
+          "
+        >
+
+          <div
+            class="
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <p
+            class="
+              font-semibold
+              text-texto
+            "
+          >
+            Red validada
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Timeline -->
+
+  <section>
+
+    <div
+      class="
+        rounded-premium
+        border
+        border-gray-100
+        bg-white
+        p-6
+        shadow-suave
+      "
+    >
+
+      <h2
+        class="
+          text-lg
+          font-semibold
+          text-texto
+        "
+      >
+        Actividad reciente
+      </h2>
+
+      <div
+        class="
+          mt-6
+          space-y-5
+        "
+      >
+
+        <div class="flex items-start gap-4">
+
+          <div
+            class="
+              mt-1
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <div>
+
+            <p
+              class="
+                font-medium
+                text-texto
+              "
+            >
+              Jornada iniciada
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-sm
+                text-gray-500
+              "
+            >
+              Hoy · 08:00 AM
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="flex items-start gap-4">
+
+          <div
+            class="
+              mt-1
+              h-3
+              w-3
+              rounded-full
+              bg-green-500
+            "
+          ></div>
+
+          <div>
+
+            <p
+              class="
+                font-medium
+                text-texto
+              "
+            >
+              Ubicación validada correctamente
+            </p>
+
+            <p
+              class="
+                mt-1
+                text-sm
+                text-gray-500
+              "
+            >
+              Hoy · 08:01 AM
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

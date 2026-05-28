@@ -1,0 +1,275 @@
+<div
+  class="
+    rounded-premium
+    border
+    border-gray-100
+    bg-white
+    shadow-suave
+    overflow-hidden
+  "
+>
+
+  <!-- Encabezado -->
+
+  <div
+    class="
+      flex
+      items-center
+      justify-between
+      border-b
+      border-gray-100
+      px-6
+      py-5
+    "
+  >
+
+    <div>
+
+      <h2
+        class="
+          text-lg
+          font-semibold
+          text-texto
+        "
+      >
+        Empleados activos
+      </h2>
+
+      <p
+        class="
+          mt-1
+          text-sm
+          text-gray-400
+        "
+      >
+        Monitoreo general del personal
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- Tabla -->
+
+  <div class="overflow-x-auto">
+
+    <table class="min-w-full">
+
+      <!-- Head -->
+
+      <thead
+        class="
+          bg-gray-50
+        "
+      >
+
+        <tr>
+
+          <th
+            class="
+              px-6
+              py-4
+              text-left
+              text-xs
+              font-semibold
+              uppercase
+              tracking-wide
+              text-gray-400
+            "
+          >
+            Empleado
+          </th>
+
+          <th
+            class="
+              px-6
+              py-4
+              text-left
+              text-xs
+              font-semibold
+              uppercase
+              tracking-wide
+              text-gray-400
+            "
+          >
+            Estado
+          </th>
+
+          <th
+            class="
+              px-6
+              py-4
+              text-left
+              text-xs
+              font-semibold
+              uppercase
+              tracking-wide
+              text-gray-400
+            "
+          >
+            Entrada
+          </th>
+
+          <th
+            class="
+              px-6
+              py-4
+              text-left
+              text-xs
+              font-semibold
+              uppercase
+              tracking-wide
+              text-gray-400
+            "
+          >
+            Ubicación
+          </th>
+
+          <th
+            class="
+              px-6
+              py-4
+              text-left
+              text-xs
+              font-semibold
+              uppercase
+              tracking-wide
+              text-gray-400
+            "
+          >
+            Actividad
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <!-- Body -->
+
+      <tbody>
+
+        @for (empleado of empleados; track empleado.nombre) {
+
+          <tr
+            class="
+              border-t
+              border-gray-100
+              transition-colors
+              hover:bg-gray-50
+            "
+          >
+
+            <!-- Empleado -->
+
+            <td class="px-6 py-5">
+
+              <div class="flex items-center gap-4">
+
+                <!-- Avatar -->
+
+                <div
+                  class="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-verdeSuave
+                    font-semibold
+                    text-primario
+                  "
+                >
+                  {{ empleado.nombre.charAt(0) }}
+                </div>
+
+                <!-- Información -->
+
+                <div>
+
+                  <p
+                    class="
+                      font-medium
+                      text-texto
+                    "
+                  >
+                    {{ empleado.nombre }}
+                  </p>
+
+                  <p
+                    class="
+                      mt-1
+                      text-sm
+                      text-gray-400
+                    "
+                  >
+                    {{ empleado.cargo }}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </td>
+
+            <!-- Estado -->
+
+            <td class="px-6 py-5">
+
+              <app-badge-estado
+                [estado]="empleado.estado"
+              >
+              </app-badge-estado>
+
+            </td>
+
+            <!-- Entrada -->
+
+            <td
+              class="
+                px-6
+                py-5
+                text-sm
+                text-gray-500
+              "
+            >
+              {{ empleado.entrada }}
+            </td>
+
+            <!-- Ubicación -->
+
+            <td
+              class="
+                px-6
+                py-5
+                text-sm
+                text-gray-500
+              "
+            >
+              {{ empleado.ubicacion }}
+            </td>
+
+            <!-- Actividad -->
+
+            <td
+              class="
+                px-6
+                py-5
+                text-sm
+                text-gray-500
+              "
+            >
+              {{ empleado.actividad }}
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,209 @@
+<div class="min-h-screen bg-gray-50 p-8">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- HEADER CON TITULO Y BOTON -->
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <h1 class="text-4xl font-bold text-texto">Mi Perfil</h1>
+        <p class="text-gray-500 mt-2">Información personal y configuración de cuenta</p>
+      </div>
+      <button 
+        (click)="toggleEditPerfil()"
+        class="flex items-center gap-2 bg-primario hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+      >
+        <span>{{ editandoPerfil ? '✕ Cancelar' : '✏️ Editar Perfil' }}</span>
+      </button>
+    </div>
+
+    <!-- SECCION TOP: DOS COLUMNAS -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+      <!-- RESUMEN DEL USUARIO -->
+      <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center border-l-4 border-primario">
+        <!-- Avatar Grande -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primario to-blue-600 flex items-center justify-center text-white text-6xl font-bold mb-6 shadow-lg">
+          {{ usuario ? (usuario.email?.charAt(0) || 'U') : 'U' }}
+        </div>
+
+        <h3 class="text-2xl font-bold text-texto mb-1">{{ nombre }}</h3>
+        <p class="text-gray-600 text-sm mb-4">{{ email }}</p>
+
+        <!-- Badges -->
+        <div class="flex gap-3 justify-center flex-wrap mb-6">
+          <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
+            {{ mapearRol(usuarioRole) }}
+          </span>
+          <span class="bg-blue-100 text-primario px-4 py-2 rounded-full text-sm font-medium">
+            ✓ Activo
+          </span>
+        </div>
+
+        <!-- Info adicional -->
+        <div class="w-full pt-6 border-t border-gray-200 text-left space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">Rol</span>
+            <span class="font-semibold text-texto">{{ mapearRol(usuarioRole) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm">Estado</span>
+            <span class="font-semibold text-green-600">Activo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFORMACION PERSONAL -->
+      <div class="bg-white rounded-2xl shadow-md p-8">
+        <h4 class="text-xl font-bold text-texto mb-6">Información Personal</h4>
+
+        <div *ngIf="!editandoPerfil" class="space-y-6">
+          <div class="pb-4 border-b border-gray-200">
+            <label class="text-sm text-gray-500 uppercase font-semibold block mb-2">Nombre Completo</label>
+            <p class="text-lg text-texto font-medium">{{ nombre }}</p>
+          </div>
+
+          <div class="pb-4 border-b border-gray-200">
+            <label class="text-sm text-gray-500 uppercase font-semibold block mb-2">Correo Electrónico</label>
+            <p class="text-lg text-texto font-medium">{{ email }}</p>
+          </div>
+
+          <div class="pb-4 border-b border-gray-200">
+            <label class="text-sm text-gray-500 uppercase font-semibold block mb-2">Rol Asignado</label>
+            <p class="text-lg text-texto font-medium">{{ mapearRol(usuarioRole) }}</p>
+          </div>
+
+          <div *ngIf="puedeBootstrapAdmin" class="p-4 rounded-2xl bg-amber-50 border border-amber-200">
+            <p class="text-sm font-semibold text-amber-800 mb-2">No hay administrador en el sistema</p>
+            <p class="text-sm text-amber-700 mb-4">
+              Si eres el primer usuario registrado, puedes convertir tu cuenta en administrador para completar la configuración.
+            </p>
+            <button
+              (click)="bootstrapAdmin()"
+              [disabled]="bootstrapLoading"
+              class="w-full bg-primario text-white rounded-lg px-4 py-3 font-semibold hover:bg-primario/90 transition"
+            >
+              {{ bootstrapLoading ? 'Asignando rol...' : 'Convertirme en administrador' }}
+            </button>
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-500 uppercase font-semibold block mb-2">Estado</label>
+            <p class="text-lg text-green-600 font-medium">✓ Verificado</p>
+          </div>
+        </div>
+
+        <!-- FORMULARIO EDICION -->
+        <form *ngIf="editandoPerfil" class="space-y-5">
+          <div>
+            <label class="text-sm text-gray-600 font-semibold block mb-2">Nombre Completo</label>
+            <input
+              type="text"
+              [(ngModel)]="nombre"
+              name="nombre"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primario focus:border-transparent"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-600 font-semibold block mb-2">Correo Electrónico</label>
+            <input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              disabled
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-500 cursor-not-allowed"
+            />
+            <p class="text-xs text-gray-400 mt-1">No puedes cambiar tu correo</p>
+          </div>
+
+          <button
+            type="button"
+            (click)="guardarCambios()"
+            class="w-full bg-primario hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition mt-6"
+          >
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- SECCION DE SEGURIDAD -->
+    <div class="bg-white rounded-2xl shadow-md p-8">
+      <h4 class="text-xl font-bold text-texto mb-6 flex items-center gap-2">
+        <span>🔒</span> Seguridad y Privacidad
+      </h4>
+
+      <div class="space-y-4">
+        <!-- CAMBIAR CONTRASEÑA -->
+        <button
+          (click)="toggleCambioPassword()"
+          class="w-full flex items-center justify-between px-6 py-4 border-2 border-gray-200 rounded-lg hover:border-primario hover:bg-blue-50 transition group"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🔐</span>
+            <div class="text-left">
+              <p class="font-semibold text-texto">Cambiar Contraseña</p>
+              <p class="text-sm text-gray-500">Actualiza tu contraseña regularmente</p>
+            </div>
+          </div>
+          <span class="text-gray-400 group-hover:text-primario transition">
+            {{ mostrandoCambioPassword ? '▼' : '▶' }}
+          </span>
+        </button>
+
+        <!-- CONTENIDO EXPANDIBLE -->
+        <div *ngIf="mostrandoCambioPassword" class="mt-4 p-6 bg-amber-50 rounded-lg border-l-4 border-amber-400 space-y-4">
+          <div class="flex gap-2">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <p class="font-semibold text-amber-900">Cambio de Contraseña</p>
+              <p class="text-sm text-amber-800 mt-1">
+                Para cambiar tu contraseña de forma segura, cierra sesión y utiliza la opción 
+                <strong>"¿Olvidaste tu contraseña?"</strong> en la pantalla de login.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded p-4 mt-4">
+            <p class="text-sm text-gray-600 mb-3">Pasos para cambiar contraseña:</p>
+            <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+              <li>Cierra tu sesión actual</li>
+              <li>En el login, haz clic en "¿Olvidaste tu contraseña?"</li>
+              <li>Ingresa tu correo electrónico</li>
+              <li>Recibirás un enlace para establecer una nueva contraseña</li>
+              <li>Sigue las instrucciones en el correo</li>
+            </ol>
+          </div>
+
+          <button
+            type="button"
+            (click)="toggleCambioPassword()"
+            class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-lg font-semibold transition mt-4"
+          >
+            Entendido, cerrar
+          </button>
+        </div>
+
+        <!-- OTRAS OPCIONES DE SEGURIDAD -->
+        <button
+          disabled
+          class="w-full flex items-center justify-between px-6 py-4 border-2 border-gray-200 rounded-lg bg-gray-50 cursor-not-allowed opacity-60"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📱</span>
+            <div class="text-left">
+              <p class="font-semibold text-gray-600">Autenticación de Dos Factores</p>
+              <p class="text-sm text-gray-400">Próximamente disponible</p>
+            </div>
+          </div>
+          <span class="text-gray-300">→</span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

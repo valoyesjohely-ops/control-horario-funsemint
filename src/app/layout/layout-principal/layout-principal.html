@@ -1,0 +1,24 @@
+<div class="flex h-screen bg-fondo">
+
+  <!-- Sidebar -->
+
+  <app-sidebar></app-sidebar>
+
+  <!-- Contenido principal -->
+
+  <div class="flex flex-1 flex-col overflow-hidden">
+
+    <!-- Navbar -->
+
+    <app-navbar></app-navbar>
+
+    <!-- Contenido -->
+
+    <main class="flex-1 overflow-y-auto p-6">
+
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>
